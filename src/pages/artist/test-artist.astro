@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Test Artist | Time Share Radio" description="Independent / Alternative artist profile powered by the Time Share Radio plugin.">
+  <section class="profile-hero">
+    <div class="profile-visual"><span>TA</span><div class="profile-orbit"></div><small>ARTIST PROFILE / 001</small></div>
+    <div class="profile-intro">
+      <a class="back-link" href="/artist/">← All artists</a>
+      <span class="section-num">INDEPENDENT / ALTERNATIVE</span>
+      <h1>TEST<br /><em>ARTIST</em></h1>
+      <p>If you are looking to get your music played on the radio, we’ve got you covered.</p>
+      <div class="profile-actions"><a class="button primary" href="#listen">Listen now <b>↓</b></a><a class="text-link" href="#bio">Read the bio ↘</a></div>
+    </div>
+  </section>
+
+  <section class="featured-track" id="listen">
+    <div class="track-number">01</div>
+    <button class="big-play" aria-label="Play Test Artist Song">▶</button>
+    <div><small>FEATURED RELEASE</small><h2>Test Artist Song</h2><p>Test Artist · Independent / Alternative</p></div>
+    <div class="track-wave" aria-hidden="true">{Array.from({length:42}).map((_,i)=><i style={`--h:${18+((i*23)%78)}%`}></i>)}</div>
+    <span class="track-price">$19.99</span>
+    <a class="track-buy" href="/shop/">View in shop ↗</a>
+  </section>
+
+  <section class="bio-section" id="bio">
+    <div><span class="section-num">THE ARTIST / BIO</span><h2>A SOUND BUILT<br />TO BE <em>HEARD.</em></h2></div>
+    <div class="bio-copy"><p class="lead">Test Artist brings an independent spirit and an alternative edge to every release.</p><p>This profile demonstrates how the Time Share Radio plugin gives each artist a dedicated home for their story, genre, featured music, and links to purchase—all connected from a single WordPress entry.</p><p>Replace this demonstration copy with the artist’s complete biography when the final artist content is available.</p><div class="artist-meta"><div><small>GENRE</small><strong>Independent / Alternative</strong></div><div><small>FEATURED TRACK</small><strong>Test Artist Song</strong></div><div><small>ON TIME SHARE</small><strong>2026</strong></div></div></div>
+  </section>
+
+  <section class="profile-plugin-cta"><span class="section-num">POWERED BY TIME SHARE RADIO</span><h2>BUILD PROFILES<br />LIKE THIS <em>IN WORDPRESS.</em></h2><p>Artist directory, individual bios, music releases, and shop connections—inside one plugin.</p><a class="button light" href="https://www.paypal.com/ncp/payment/2DSWELQCG67ZG">Buy the plugin <b>↗</b></a></section>
+</Layout>
