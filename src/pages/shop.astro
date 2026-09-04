@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Shop | Time Share Radio" description="Purchase a Time Share Radio artist spotlight.">
+  <section class="shop-head"><span class="section-num">TIME SHARE SHOP</span><h1>CLAIM THE<br /><em>AIRWAVES.</em></h1></section>
+  <section class="products">
+    {['Artist Spotlight','Release Spotlight','Artist Spotlight — Three Pack'].map((name, i) => <article class="product">
+      <div class:list={['product-art', `art-${i+1}`]}><span>TIME<br/>SHARE</span><i>0{i+1}</i></div>
+      <div class="product-info"><small>{i === 2 ? 'MULTI-SPOT PACKAGE' : 'SINGLE-TRACK FEATURE'}</small><h2>{name}</h2><p>{i === 2 ? 'Build a run of momentum with three focused artist features.' : 'Put one selected song into a focused Time Share Radio feature.'}</p><div><strong>{i === 2 ? '$49.99' : '$19.99'}</strong><a href="https://www.paypal.com/ncp/payment/2DSWELQCG67ZG" aria-label={`Buy ${name}`}>Buy now ↗</a></div></div>
+    </article>)}
+  </section>
+</Layout>

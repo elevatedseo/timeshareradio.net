@@ -1,0 +1,10 @@
+---
+const { compact = false } = Astro.props;
+---
+<div class:list={['player', { compact }]}>
+  <button class="play" aria-label="Play preview"><span>▶</span></button>
+  <div class="track-art"><span>TS</span></div>
+  <div class="track-copy"><small>NOW PLAYING</small><strong>YOUR NEXT FAVORITE ARTIST</strong><span>Time Share Radio · Artist Spotlight</span></div>
+  <div class="wave" aria-hidden="true">{Array.from({ length: 24 }).map((_, i) => <i style={`--h:${20 + ((i * 17) % 70)}%`}></i>)}</div>
+  <span class="time">LIVE</span>
+</div>

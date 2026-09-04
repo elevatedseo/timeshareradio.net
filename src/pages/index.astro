@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Player from '../components/Player.astro';
+---
+<Layout title="Time Share Radio | Turn Attention Into Momentum" description="Time Share Radio gives independent artists a focused platform to reach listeners, build momentum, and own their moment.">
+  <section class="hero">
+    <div class="hero-noise"></div>
+    <div class="eyebrow"><span></span> Independent sounds. Real attention.</div>
+    <h1>YOUR MUSIC.<br /><em>YOUR MOMENT.</em></h1>
+    <p class="hero-copy">A focused platform built to put emerging artists in front of listeners who are ready to discover what’s next.</p>
+    <div class="actions"><a class="button primary" href="/artist/">Get your song heard <b>↗</b></a><a class="button ghost" href="#about">See how it works</a></div>
+    <Player />
+    <div class="ticker"><span>ARTIST SPOTLIGHT</span><i>✦</i><span>CURATED DISCOVERY</span><i>✦</i><span>REAL LISTENERS</span><i>✦</i><span>YOUR TURN ON AIR</span></div>
+  </section>
+
+  <section class="statement" id="about">
+    <div><span class="section-num">01 / THE IDEA</span><h2>NOT ANOTHER<br />ALGORITHM.</h2></div>
+    <div class="statement-copy"><p>Music deserves more than a half-second scroll. Time Share Radio creates a dedicated window where one artist gets the room—and the listener’s attention.</p><p>It’s simple: one song, one spotlight, one real chance to connect.</p></div>
+  </section>
+
+  <section class="steps">
+    <div class="section-heading"><span class="section-num">02 / HOW IT WORKS</span><h2>FROM UPLOAD<br /><em>TO ON AIR.</em></h2></div>
+    <div class="step-grid">
+      <article><span>01</span><div class="step-icon">↥</div><h3>Submit your track</h3><p>Send us the song you want listeners to hear, along with your artist details and artwork.</p></article>
+      <article><span>02</span><div class="step-icon">◉</div><h3>Claim your time</h3><p>Choose your spotlight and give your music a dedicated moment in the broadcast.</p></article>
+      <article><span>03</span><div class="step-icon">⌁</div><h3>Build momentum</h3><p>Share your feature, reach new ears, and turn discovery into your next true fan.</p></article>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <p>THE AIRWAVES ARE OPEN.</p><h2>YOUR NEXT LISTENER<br />IS ALREADY <em>TUNING IN.</em></h2>
+    <a class="button light" href="/artist/">Start your spotlight <b>↗</b></a>
+  </section>
+</Layout>

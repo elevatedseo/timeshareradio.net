@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+const { title = 'Time Share Radio', description = 'A new stage for independent artists.' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f24822" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Time Share Radio home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>TIME SHARE<small>RADIO</small></span>
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav id="nav" aria-label="Main navigation">
+        <a href="/">Home</a><a href="/artist/">Artists</a><a href="/shop/">Shop</a><a href="/about/">About</a>
+        <a class="nav-cta" href="https://www.paypal.com/ncp/payment/2DSWELQCG67ZG">Buy now</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer>
+      <a class="brand footer-brand" href="/"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><span>TIME SHARE<small>RADIO</small></span></a>
+      <p>More than airtime. A moment that moves.</p>
+      <p class="copyright">© {new Date().getFullYear()} Time Share Radio</p>
+    </footer>
+    <script>
+      const button = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('#nav');
+      button?.addEventListener('click', () => {
+        const open = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!open));
+        nav?.classList.toggle('open', !open);
+      });
+    </script>
+  </body>
+</html>

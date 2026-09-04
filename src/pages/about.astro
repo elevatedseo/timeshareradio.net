@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="About Us | Time Share Radio" description="Learn about Time Share Radio and our platform for independent artists.">
+  <section class="about-head">
+    <div><span class="section-num">ABOUT TIME SHARE RADIO</span><h1>OUR STORY,<br /><em>ON AIR.</em></h1></div>
+    <p>Explore the Time Share Radio presentation below. The full deck is displayed directly on this page—no download required.</p>
+  </section>
+  <section class="deck-section" aria-label="Time Share Radio About Us presentation">
+    <object class="deck-viewer" data="/documents/timeshare-radio-deck.pdf#view=FitH&toolbar=1&navpanes=0" type="application/pdf">
+      <iframe title="Time Share Radio About Us presentation" src="/documents/timeshare-radio-deck.pdf#view=FitH&toolbar=1&navpanes=0"></iframe>
+      <div class="deck-fallback"><h2>View our presentation</h2><p>Your browser does not support inline PDF viewing.</p><a class="button primary" href="/documents/timeshare-radio-deck.pdf" target="_blank">Open presentation <b>↗</b></a></div>
+    </object>
+  </section>
+</Layout>
