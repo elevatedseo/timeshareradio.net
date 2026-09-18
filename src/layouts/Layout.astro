@@ -20,14 +20,20 @@ const { title = 'Time Share Radio', description = 'A new stage for independent a
       </a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
       <nav id="nav" aria-label="Main navigation">
-        <a href="/">Home</a><a href="/artist/">Artists</a><a href="/shop/">Shop</a><a href="/about/">About</a>
+        <a href="/">Home</a><a href="/artist/">Artists</a><a href="/shop/">Shop</a><a href="/stations/">Stations</a><a href="/about/">About</a>
         <a class="nav-cta" href="https://www.paypal.com/ncp/payment/2DSWELQCG67ZG">Buy now</a>
       </nav>
     </header>
     <main><slot /></main>
     <footer>
       <a class="brand footer-brand" href="/"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><span>TIME SHARE<small>RADIO</small></span></a>
-      <p>The artist and music-store plugin for WordPress.</p>
+      <div class="footer-content">
+        <p>The artist and music-store plugin for WordPress.</p>
+        <a class="footer-portal" href="/portal/">
+          <span>For artists</span>
+          Artist Portal <b>↗</b>
+        </a>
+      </div>
       <p class="copyright">© {new Date().getFullYear()} Time Share Radio</p>
     </footer>
     <script>

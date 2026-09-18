@@ -1,0 +1,290 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Artist Portal | Time Share Radio" description="Create and preview your Time Share Radio artist bio.">
+  <section class="portal-hero">
+    <div>
+      <span class="section-num">ARTIST PORTAL / PROFILE BUILDER</span>
+      <h1>TELL US<br />WHO YOU <em>ARE.</em></h1>
+    </div>
+    <p>Build the story behind the sound. Add your artist details, upload a profile image, and preview the bio that will become your Time Share Radio profile.</p>
+  </section>
+
+  <section class="portal-workspace">
+    <form class="bio-form" id="artist-bio-form">
+      <div class="form-heading">
+        <span class="form-step">01</span>
+        <div><h2>Artist bio</h2><p>Fields marked with * are required.</p></div>
+      </div>
+
+      <div class="field-row">
+        <label>Artist or stage name *<input type="text" name="artistName" autocomplete="organization" required placeholder="Your artist name" /></label>
+        <label>Genre *<input type="text" name="genre" required placeholder="R&B, Hip-Hop, House…" /></label>
+      </div>
+      <label>Based in<input type="text" name="location" autocomplete="address-level2" placeholder="City, State or Country" /></label>
+      <label>Short introduction *<textarea name="intro" rows="3" maxlength="220" required placeholder="One sharp sentence that introduces your sound."></textarea><small><span id="intro-count">0</span>/220 characters</small></label>
+      <label>Full artist bio *<textarea name="bio" rows="9" required placeholder="Share your story, influences, milestones, and what listeners should know about you."></textarea></label>
+
+      <label class="upload-field" for="artist-photo">
+        <input id="artist-photo" type="file" name="photo" accept="image/jpeg,image/png,image/webp" />
+        <span class="upload-icon">↥</span>
+        <strong>Upload profile image</strong>
+        <span id="photo-label">JPG, PNG, or WebP · up to 2 MB</span>
+      </label>
+
+      <div class="form-actions">
+        <button class="button primary" type="submit">Add bio to artists <b>↗</b></button>
+        <button class="clear-draft" id="clear-draft" type="button">Clear draft</button>
+      </div>
+      <p class="form-status" id="form-status" role="status" aria-live="polite">Your draft stays private in this browser. Publishing will be connected when the portal backend is added.</p>
+    </form>
+
+    <aside class="bio-preview" aria-label="Artist bio preview">
+      <div class="preview-label"><span>LIVE PREVIEW</span><i></i></div>
+      <div class="preview-photo" id="preview-photo"><span id="preview-initials">YR</span></div>
+      <span class="preview-genre" id="preview-genre">YOUR GENRE</span>
+      <h2 id="preview-name">YOUR<br /><em>NAME</em></h2>
+      <p class="preview-intro" id="preview-intro">Your short artist introduction will appear here.</p>
+      <p class="preview-bio" id="preview-bio">Your full bio will fill this space as you type.</p>
+      <span class="preview-location" id="preview-location">LOCATION TO BE ANNOUNCED</span>
+    </aside>
+  </section>
+
+  <section class="music-upload-section">
+    <div class="music-upload-copy"><span class="section-num">02 / MUSIC UPLOAD</span><h2>ADD YOUR<br /><em>RELEASE.</em></h2><p>Upload cover art and an MP3 to preview your release in the Time Share Radio shop.</p></div>
+    <form class="bio-form music-form" id="music-upload-form">
+      <div class="field-row">
+        <label>Song title *<input type="text" name="songTitle" required placeholder="Name of your song" /></label>
+        <label>Artist name *<input type="text" name="songArtist" required placeholder="Artist or stage name" /></label>
+      </div>
+      <div class="field-row">
+        <label>Genre<input type="text" name="songGenre" placeholder="R&B, Hip-Hop, House…" /></label>
+        <label>Display price<input type="text" name="songPrice" inputmode="decimal" placeholder="Coming soon" /></label>
+      </div>
+      <div class="music-files">
+        <label class="upload-field" for="cover-image"><input id="cover-image" type="file" accept="image/jpeg,image/png,image/webp" required /><span class="upload-icon">▧</span><strong>Upload cover image</strong><span id="cover-label">JPG, PNG, or WebP · up to 2 MB</span></label>
+        <label class="upload-field" for="song-file"><input id="song-file" type="file" accept="audio/mpeg,audio/mp3" required /><span class="upload-icon">♫</span><strong>Upload song</strong><span id="song-label">MP3 · up to 20 MB</span></label>
+      </div>
+      <button class="button primary" type="submit">Add song to shop <b>↗</b></button>
+      <p class="form-status" id="music-status" role="status" aria-live="polite">Your release stays private in this browser until publishing is connected.</p>
+    </form>
+  </section>
+
+  <section class="station-upload-section">
+    <div class="music-upload-copy"><span class="section-num">03 / RADIO STATION</span><h2>ADD YOUR<br /><em>STATION.</em></h2><p>Give listeners your station name or call letters, location, format, and live stream.</p></div>
+    <form class="bio-form station-form" id="station-upload-form">
+      <div class="field-row">
+        <label>Station name *<input type="text" name="stationName" required placeholder="Your station name" /></label>
+        <label>Call letters *<input type="text" name="callLetters" required maxlength="8" autocapitalize="characters" placeholder="WTSR" /></label>
+      </div>
+      <div class="field-row">
+        <label>Frequency<input type="text" name="frequency" placeholder="95.7 FM" /></label>
+        <label>Location *<input type="text" name="stationLocation" required placeholder="City, State or Country" /></label>
+      </div>
+      <label>Format<input type="text" name="stationFormat" placeholder="Independent music, Hip-Hop, R&B…" /></label>
+      <label>Live stream URL<input type="url" name="streamUrl" inputmode="url" placeholder="https://your-station.com/live.mp3" /></label>
+      <label class="upload-field" for="station-logo"><input id="station-logo" type="file" accept="image/jpeg,image/png,image/webp" /><span class="upload-icon">◉</span><strong>Upload station logo</strong><span id="station-logo-label">JPG, PNG, or WebP · up to 2 MB</span></label>
+      <button class="button primary" type="submit">Add station <b>↗</b></button>
+      <p class="form-status" id="station-status" role="status" aria-live="polite">Your station stays private in this browser until publishing is connected.</p>
+    </form>
+  </section>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>('#artist-bio-form');
+    const fields = ['artistName', 'genre', 'location', 'intro', 'bio'];
+    const draftKey = 'timeshare-radio-artist-bio';
+    let photoData = '';
+    const getField = (name: string) => form?.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | null;
+    const escapeText = (value?: string) => value?.trim() || '';
+    const setText = (selector: string, value: string) => {
+      const element = document.querySelector<HTMLElement>(selector);
+      if (element) element.textContent = value;
+    };
+
+    function updatePreview() {
+      const name = escapeText(getField('artistName')?.value);
+      const words = name ? name.toUpperCase().split(/\s+/) : ['YOUR', 'NAME'];
+      const splitAt = Math.max(1, Math.ceil(words.length / 2));
+      const previewName = document.querySelector<HTMLElement>('#preview-name');
+      if (previewName) previewName.innerHTML = `${words.slice(0, splitAt).join(' ')}<br><em>${words.slice(splitAt).join(' ') || 'ARTIST'}</em>`;
+      setText('#preview-initials', name ? words.slice(0, 2).map((word: string) => word[0]).join('') : 'YR');
+      setText('#preview-genre', escapeText(getField('genre')?.value).toUpperCase() || 'YOUR GENRE');
+      setText('#preview-location', escapeText(getField('location')?.value).toUpperCase() || 'LOCATION TO BE ANNOUNCED');
+      setText('#preview-intro', escapeText(getField('intro')?.value) || 'Your short artist introduction will appear here.');
+      setText('#preview-bio', escapeText(getField('bio')?.value) || 'Your full bio will fill this space as you type.');
+      setText('#intro-count', String(getField('intro')?.value.length || 0));
+    }
+
+    const savedDraft = localStorage.getItem(draftKey);
+    if (savedDraft && form) {
+      try {
+        const draft = JSON.parse(savedDraft);
+        fields.forEach((name) => { const field = getField(name); if (field && draft[name]) field.value = draft[name]; });
+        if (draft.photoData) {
+          photoData = draft.photoData;
+          const previewPhoto = document.querySelector<HTMLElement>('#preview-photo');
+          if (previewPhoto) {
+            previewPhoto.style.backgroundImage = `url(${photoData})`;
+            previewPhoto.classList.add('has-photo');
+          }
+          setText('#photo-label', 'Saved profile image');
+        }
+      } catch { localStorage.removeItem(draftKey); }
+    }
+    updatePreview();
+    form?.addEventListener('input', updatePreview);
+
+    document.querySelector<HTMLInputElement>('#artist-photo')?.addEventListener('change', (event) => {
+      const input = event.currentTarget as HTMLInputElement;
+      const file = input.files?.[0];
+      if (!file) return;
+      if (file.size > 2 * 1024 * 1024) {
+        input.value = '';
+        setText('#form-status', 'Please choose an image smaller than 2 MB.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        photoData = String(reader.result || '');
+        const previewPhoto = document.querySelector<HTMLElement>('#preview-photo');
+        if (previewPhoto) {
+          previewPhoto.style.backgroundImage = `url(${photoData})`;
+          previewPhoto.classList.add('has-photo');
+        }
+        setText('#photo-label', file.name);
+      });
+      reader.readAsDataURL(file);
+    });
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const draft = { ...Object.fromEntries(fields.map((name) => [name, getField(name)?.value || ''])), photoData };
+      try {
+        localStorage.setItem(draftKey, JSON.stringify(draft));
+        setText('#form-status', 'Bio added. Opening the artist directory…');
+        window.setTimeout(() => { window.location.href = '/artist/'; }, 350);
+      } catch {
+        setText('#form-status', 'The image is too large for browser storage. Choose a smaller image and try again.');
+      }
+    });
+
+    document.querySelector('#clear-draft')?.addEventListener('click', () => {
+      localStorage.removeItem(draftKey);
+      photoData = '';
+      form?.reset();
+      const previewPhoto = document.querySelector<HTMLElement>('#preview-photo');
+      if (previewPhoto) {
+        previewPhoto.style.backgroundImage = '';
+        previewPhoto.classList.remove('has-photo');
+      }
+      setText('#photo-label', 'JPG, PNG, or WebP · up to 2 MB');
+      setText('#form-status', 'Draft cleared. Start a new artist bio whenever you are ready.');
+      updatePreview();
+    });
+  </script>
+  <script>
+    const musicForm = document.querySelector<HTMLFormElement>('#music-upload-form');
+    const coverInput = document.querySelector<HTMLInputElement>('#cover-image');
+    const songInput = document.querySelector<HTMLInputElement>('#song-file');
+    const musicText = (selector: string, value: string) => { const element = document.querySelector(selector); if (element) element.textContent = value; };
+    let coverData = '';
+
+    coverInput?.addEventListener('change', () => {
+      const file = coverInput.files?.[0];
+      if (!file) return;
+      if (file.size > 2 * 1024 * 1024) {
+        coverInput.value = '';
+        musicText('#music-status', 'Please choose cover art smaller than 2 MB.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.addEventListener('load', () => { coverData = String(reader.result || ''); musicText('#cover-label', file.name); });
+      reader.readAsDataURL(file);
+    });
+    songInput?.addEventListener('change', () => {
+      const file = songInput.files?.[0];
+      if (!file) return;
+      if (file.size > 20 * 1024 * 1024) {
+        songInput.value = '';
+        musicText('#music-status', 'Please choose an MP3 smaller than 20 MB.');
+        return;
+      }
+      musicText('#song-label', file.name);
+    });
+
+    function saveAudio(file: File) {
+      return new Promise<void>((resolve, reject) => {
+        const request = indexedDB.open('timeshare-radio', 1);
+        request.addEventListener('upgradeneeded', () => request.result.createObjectStore('uploads'));
+        request.addEventListener('error', () => reject(request.error));
+        request.addEventListener('success', () => {
+          const transaction = request.result.transaction('uploads', 'readwrite');
+          transaction.objectStore('uploads').put(file, 'shop-song');
+          transaction.addEventListener('complete', () => { request.result.close(); resolve(); });
+          transaction.addEventListener('error', () => reject(transaction.error));
+        });
+      });
+    }
+
+    musicForm?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!musicForm.reportValidity()) return;
+      const audio = songInput?.files?.[0];
+      if (!audio || !coverData) return;
+      const data = new FormData(musicForm);
+      try {
+        await saveAudio(audio);
+        localStorage.setItem('timeshare-radio-shop-song', JSON.stringify({ title: data.get('songTitle'), artist: data.get('songArtist'), genre: data.get('songGenre'), price: data.get('songPrice'), coverData }));
+        musicText('#music-status', 'Release added. Opening the music shop…');
+        window.setTimeout(() => { window.location.href = '/shop/'; }, 350);
+      } catch {
+        musicText('#music-status', 'This browser could not save the MP3. Please try again.');
+      }
+    });
+  </script>
+  <script>
+    const stationForm = document.querySelector<HTMLFormElement>('#station-upload-form');
+    const stationLogoInput = document.querySelector<HTMLInputElement>('#station-logo');
+    const stationMessage = (selector: string, value: string) => { const element = document.querySelector(selector); if (element) element.textContent = value; };
+    let stationLogoData = '';
+
+    stationLogoInput?.addEventListener('change', () => {
+      const file = stationLogoInput.files?.[0];
+      if (!file) return;
+      if (file.size > 2 * 1024 * 1024) {
+        stationLogoInput.value = '';
+        stationMessage('#station-status', 'Please choose a station logo smaller than 2 MB.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        stationLogoData = String(reader.result || '');
+        stationMessage('#station-logo-label', file.name);
+      });
+      reader.readAsDataURL(file);
+    });
+
+    stationForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!stationForm.reportValidity()) return;
+      const data = new FormData(stationForm);
+      const station = {
+        name: data.get('stationName'),
+        callLetters: String(data.get('callLetters') || '').toUpperCase(),
+        frequency: data.get('frequency'),
+        location: data.get('stationLocation'),
+        format: data.get('stationFormat'),
+        streamUrl: data.get('streamUrl'),
+        logoData: stationLogoData,
+      };
+      try {
+        localStorage.setItem('timeshare-radio-station', JSON.stringify(station));
+        stationMessage('#station-status', 'Station added. Opening the station directory…');
+        window.setTimeout(() => { window.location.href = '/stations/'; }, 350);
+      } catch {
+        stationMessage('#station-status', 'The logo is too large for browser storage. Choose a smaller image and try again.');
+      }
+    });
+  </script>
+</Layout>

@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Radio Stations | Time Share Radio" description="Discover radio stations and call letters on Time Share Radio.">
+  <section class="page-hero artist-hero"><span class="section-num">RADIO STATION DIRECTORY</span><h1>FIND YOUR<br /><em>FREQUENCY.</em></h1><p>Discover independent radio stations, their call letters, formats, and live streams.</p></section>
+  <section class="artist-directory">
+    <div class="directory-head"><h2>Radio Stations</h2><span id="station-count">0 STATIONS</span></div>
+    <div class="station-grid" id="station-grid">
+      <p id="station-empty">No station has been added in this browser yet. Add yours through the <a href="/portal/">Artist Portal</a>.</p>
+    </div>
+  </section>
+  <script>
+    const savedStation = localStorage.getItem('timeshare-radio-station');
+    const stationGrid = document.querySelector<HTMLElement>('#station-grid');
+    if (savedStation && stationGrid) {
+      try {
+        const station = JSON.parse(savedStation);
+        if (station.name && station.callLetters) {
+          stationGrid.querySelector('#station-empty')?.remove();
+          const card = document.createElement('article');
+          card.className = 'station-card';
+          const logo = document.createElement('div');
+          logo.className = 'station-logo';
+          if (station.logoData) logo.style.backgroundImage = `url(${station.logoData})`;
+          const calls = document.createElement('strong');
+          calls.textContent = station.logoData ? '' : station.callLetters;
+          logo.append(calls);
+          const callLetters = document.createElement('small');
+          callLetters.textContent = [station.callLetters, station.frequency].filter(Boolean).join(' · ');
+          const name = document.createElement('h2');
+          name.textContent = station.name;
+          const meta = document.createElement('p');
+          meta.className = 'station-meta';
+          meta.textContent = [station.format, station.location].filter(Boolean).join(' · ');
+          card.append(logo, callLetters, name, meta);
+          if (station.streamUrl) {
+            const audio = document.createElement('audio');
+            audio.controls = true;
+            audio.preload = 'none';
+            audio.src = station.streamUrl;
+            card.append(audio);
+          }
+          stationGrid.append(card);
+          const count = document.querySelector('#station-count');
+          if (count) count.textContent = '1 STATION';
+        }
+      } catch { localStorage.removeItem('timeshare-radio-station'); }
+    }
+  </script>
+</Layout>

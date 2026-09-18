@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+<Layout title="Artist Profile | Time Share Radio" description="Artist bio submitted through the Time Share Radio Artist Portal.">
+  <section class="profile-hero local-profile" id="local-profile">
+    <div class="profile-visual" id="profile-photo"><span id="profile-initials">YR</span><small>ARTIST PORTAL / PROFILE</small></div>
+    <div class="profile-intro">
+      <a class="back-link" href="/artist/">← All artists</a>
+      <span class="section-num" id="profile-genre">INDEPENDENT ARTIST</span>
+      <h1 id="profile-name">YOUR<br /><em>PROFILE</em></h1>
+      <p id="profile-intro">Complete your artist bio in the portal to build this page.</p>
+      <div class="profile-actions"><a class="button primary" href="/portal/">Edit bio <b>↗</b></a><a class="text-link" href="#bio">Read the bio ↘</a></div>
+    </div>
+  </section>
+  <section class="bio-section" id="bio">
+    <div><span class="section-num">THE ARTIST / BIO</span><h2>BEHIND<br />THE <em>SOUND.</em></h2></div>
+    <div class="bio-copy"><p class="lead" id="bio-lead">Your artist introduction.</p><p id="bio-full">Your full artist biography will appear here.</p><div class="artist-meta"><div><small>GENRE</small><strong id="bio-genre">Independent Artist</strong></div><div><small>BASED IN</small><strong id="bio-location">To be announced</strong></div></div></div>
+  </section>
+  <script>
+    const savedDraft = localStorage.getItem('timeshare-radio-artist-bio');
+    if (savedDraft) {
+      try {
+        const artist = JSON.parse(savedDraft);
+        const setText = (selector: string, value: string) => { const element = document.querySelector(selector); if (element) element.textContent = value; };
+        const words = String(artist.artistName || 'Your Profile').toUpperCase().split(/\s+/);
+        const splitAt = Math.max(1, Math.ceil(words.length / 2));
+        const heading = document.querySelector<HTMLElement>('#profile-name');
+        if (heading) heading.innerHTML = `${words.slice(0, splitAt).join(' ')}<br><em>${words.slice(splitAt).join(' ') || 'ARTIST'}</em>`;
+        setText('#profile-genre', String(artist.genre || 'Independent Artist').toUpperCase());
+        setText('#profile-intro', artist.intro || 'Independent artist on Time Share Radio.');
+        setText('#bio-lead', artist.intro || 'Independent artist on Time Share Radio.');
+        setText('#bio-full', artist.bio || 'Bio coming soon.');
+        setText('#bio-genre', artist.genre || 'Independent Artist');
+        setText('#bio-location', artist.location || 'To be announced');
+        const photo = document.querySelector<HTMLElement>('#profile-photo');
+        if (artist.photoData && photo) {
+          photo.style.backgroundImage = `linear-gradient(180deg, transparent 55%, rgba(0,0,0,.45)), url(${artist.photoData})`;
+          photo.style.backgroundSize = 'cover';
+          photo.style.backgroundPosition = 'center';
+          setText('#profile-initials', '');
+        } else {
+          setText('#profile-initials', words.slice(0, 2).map((word: string) => word[0]).join(''));
+        }
+      } catch { window.location.href = '/portal/'; }
+    } else {
+      window.location.href = '/portal/';
+    }
+  </script>
+</Layout>
