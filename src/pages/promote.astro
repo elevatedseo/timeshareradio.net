@@ -1,0 +1,228 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const products = [
+  {
+    name: 'Song Review',
+    price: 25,
+    desc: 'Professional written review of your track with actionable feedback on production, arrangement, and radio readiness.',
+    features: ['Written review within 7 days', 'Production feedback', 'Radio-readiness score'],
+  },
+  {
+    name: 'Priority Review',
+    price: 100,
+    desc: 'Jump the line. Your track reviewed first with detailed scoring and a direct path to airplay consideration.',
+    features: ['48-hour turnaround', 'Detailed scoring rubric', 'Airplay recommendation', 'Featured in review queue'],
+    popular: true,
+  },
+  {
+    name: 'Artist Interview',
+    price: 250,
+    desc: 'A full on-air interview segment. Tell your story, promote your music, and connect with real listeners.',
+    features: ['15-min on-air interview', 'Audio replay + analytics', 'Social media promo', 'Artist profile feature'],
+  },
+  {
+    name: 'Featured Artist',
+    price: 500,
+    desc: 'The full spotlight. Homepage feature, heavy rotation consideration, interview, and social push.',
+    features: ['Everything in Interview', 'Homepage spotlight (30 days)', 'Heavy rotation consideration', 'Social media campaign', 'Analytics dashboard'],
+  },
+  {
+    name: 'Airplay Campaign',
+    price: 750,
+    priceNote: '$500 – $1,000 based on market',
+    desc: 'A targeted spin campaign across our station network. Real spins, real listeners, real momentum.',
+    features: ['Guaranteed spin package', 'Multi-station reach', 'Spin reports + analytics', 'Campaign manager'],
+  },
+];
+
+const airtime = [
+  {
+    name: '30-Minute AirRental',
+    price: '100',
+    priceNote: 'starting at — non-commercial',
+    desc: 'Your own 30-minute show. Your music, your voice, your audience.',
+    features: ['30-min broadcast slot', 'Streaming replay', 'Listener analytics'],
+  },
+  {
+    name: '60-Minute AirRental',
+    price: '200',
+    priceNote: 'starting at — non-commercial',
+    desc: 'A full hour. Go deeper — interviews, guest mixes, full creative control.',
+    features: ['60-min broadcast slot', 'Streaming replay', 'Listener analytics', 'Priority scheduling'],
+  },
+  {
+    name: 'Monthly Residency',
+    price: '800',
+    priceNote: 'starting at — non-commercial',
+    desc: 'Your show, every week. Build a real audience with a recurring slot.',
+    features: ['Weekly broadcast slot', 'Streaming replay archive', 'Full analytics suite', 'Promotional support'],
+  },
+];
+
+const memberships = [
+  { name: 'Starter', price: 0, desc: 'Artist profile + 1 song submission. Free forever.', cta: 'Get Started' },
+  { name: 'Creator', price: 29, desc: '3 song submissions + professional song review.', cta: 'Go Creator' },
+  { name: 'Pro', price: 99, desc: 'Airplay + guaranteed review + analytics + 15% ad-share.', cta: 'Go Pro', popular: true },
+  { name: 'Premium', price: 299, desc: 'Airplay + interview + 25% ad-share + analytics.', cta: 'Go Premium' },
+  { name: 'Elite', price: 999, desc: 'Airplay + interviews + 50% ad-share + featured artist.', cta: 'Go Elite' },
+];
+---
+<Layout title="Promote Your Music | Time Share Radio" description="Get your music reviewed, interviewed, and on the air. Song reviews, priority placement, artist interviews, airplay campaigns, and show rentals.">
+  <section class="page-hero">
+    <p class="eyebrow">For Artists</p>
+    <h1>GET HEARD.<br /><em>GET PAID.</em></h1>
+    <p class="hero-copy">Real reviews, real interviews, real airplay. Pick your move — every purchase directly supports independent radio.</p>
+  </section>
+
+  <!-- ONE-TIME PROMOTION PRODUCTS -->
+  <section class="section">
+    <div class="section-heading">
+      <span class="section-num">01 / PROMOTION</span>
+      <h2>AIRPLAY <em>PROMOTION</em></h2>
+      <p>One-time purchases. Instant momentum.</p>
+    </div>
+    <div class="product-grid">
+      {products.map(p => (
+        <article class:list={['product-card', { popular: p.popular }]}>
+          {p.popular && <span class="badge">Most Popular</span>}
+          <h3>{p.name}</h3>
+          <div class="price">
+            <span class="amount">${p.price}</span>
+            {p.priceNote && <span class="note">{p.priceNote}</span>}
+          </div>
+          <p class="desc">{p.desc}</p>
+          <ul>
+            {p.features.map(f => <li>{f}</li>)}
+          </ul>
+          <a class="button primary buy-btn" href={`https://www.paypal.com/ncp/payment/2DSWELQCG67ZG`} target="_blank" rel="noopener">
+            Buy Now — ${p.price} <b>↗</b>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- AIRTIME RENTALS -->
+  <section class="section alt">
+    <div class="section-heading">
+      <span class="section-num">02 / AIRTIME</span>
+      <h2>RENT THE <em>AIRWAVES</em></h2>
+      <p>Your show. Your audience. Your moment.</p>
+    </div>
+    <div class="product-grid">
+      {airtime.map(a => (
+        <article class="product-card">
+          <h3>{a.name}</h3>
+          <div class="price">
+            <span class="amount">${a.price}</span>
+            <span class="note">{a.priceNote}</span>
+          </div>
+          <p class="desc">{a.desc}</p>
+          <ul>
+            {a.features.map(f => <li>{f}</li>)}
+          </ul>
+          <a class="button primary buy-btn" href="/contact/" >
+            Book Your Slot <b>→</b>
+          </a>
+        </article>
+      ))}
+    </div>
+    <p class="fine-print">Commercial rates available. Contact us for custom packages and sponsorship opportunities.</p>
+  </section>
+
+  <!-- MEMBERSHIPS -->
+  <section class="section">
+    <div class="section-heading">
+      <span class="section-num">03 / MEMBERSHIP</span>
+      <h2>ARTIST <em>MEMBERSHIPS</em></h2>
+      <p>Monthly plans that grow with your career. 75% goes to the station, 25% keeps the platform running.</p>
+    </div>
+    <div class="tier-grid">
+      {memberships.map(m => (
+        <article class:list={['tier-card', { popular: m.popular }]}>
+          {m.popular && <span class="badge">Best Value</span>}
+          <h3>{m.name}</h3>
+          <div class="price">
+            <span class="amount">{m.price === 0 ? 'Free' : `$${m.price}`}</span>
+            {m.price > 0 && <span class="note">/month</span>}
+          </div>
+          <p class="desc">{m.desc}</p>
+          <a class="button ghost buy-btn" href="/contact/">{m.cta} <b>→</b></a>
+        </article>
+      ))}
+    </div>
+    <p class="fine-print">Membership billing launching soon — join the waitlist and lock in founding rates.</p>
+  </section>
+
+  <!-- STATION SAAS -->
+  <section class="section saas-band">
+    <div class="saas-inner">
+      <span class="section-num">04 / FOR STATIONS</span>
+      <h2>RUN YOUR STATION<br />ON <em>TIME SHARE RADIO</em></h2>
+      <p class="saas-copy">The full platform — artist directory, submissions, airplay management, analytics, and monetization — for your station. Not just a plugin. A complete system.</p>
+      <div class="saas-price">
+        <span class="amount">$99</span>
+        <span class="note">/month per station</span>
+      </div>
+      <ul class="saas-features">
+        <li>Artist directory + bio pages</li>
+        <li>Music submission pipeline</li>
+        <li>Airplay scheduling + analytics</li>
+        <li>Built-in monetization (reviews, interviews, sponsorships)</li>
+        <li>75/25 revenue split on all transactions</li>
+      </ul>
+      <a class="button primary" href="/contact/">Get Your Station On Board <b>→</b></a>
+    </div>
+  </section>
+</Layout>
+<style>
+  .page-hero{text-align:center;padding:80px 24px 40px;max-width:800px;margin:0 auto}
+  .eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--orange);font-weight:700}
+  .page-hero h1{font-size:clamp(48px,8vw,96px);line-height:.95;text-transform:uppercase;margin:20px 0}
+  .page-hero h1 em{color:var(--orange);font-style:normal}
+  .hero-copy{color:#888;font-size:18px;max-width:600px;margin:0 auto;line-height:1.6}
+  .section{padding:60px 24px;max-width:1200px;margin:0 auto}
+  .section.alt{background:#0d0d0d;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;max-width:100%}
+  .section.alt .section-heading,.section.alt .fine-print{max-width:1200px;margin-left:auto;margin-right:auto}
+  .section-heading{margin-bottom:40px}
+  .section-num{font-size:11px;letter-spacing:.2em;color:var(--orange);text-transform:uppercase;font-weight:700}
+  .section-heading h2{font-size:clamp(36px,5vw,56px);text-transform:uppercase;margin:12px 0 8px}
+  .section-heading h2 em{color:var(--orange);font-style:normal}
+  .section-heading p{color:#888;font-size:16px}
+  .product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+  .product-card{background:#141414;border:1px solid #222;border-radius:12px;padding:32px;position:relative;display:flex;flex-direction:column}
+  .product-card.popular{border-color:var(--orange);box-shadow:0 0 40px rgba(255,107,0,.15)}
+  .badge{position:absolute;top:-12px;left:24px;background:var(--orange);color:#000;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;padding:4px 12px;border-radius:20px}
+  .product-card h3{font-size:22px;text-transform:uppercase;margin:0 0 12px}
+  .price{margin-bottom:16px}
+  .price .amount{font-size:40px;font-weight:800;color:var(--orange)}
+  .price .note{display:block;font-size:12px;color:#666;margin-top:4px}
+  .desc{color:#aaa;font-size:14px;line-height:1.6;margin:0 0 20px}
+  .product-card ul{list-style:none;padding:0;margin:0 0 28px;flex:1}
+  .product-card li{color:#888;font-size:13px;padding:6px 0;border-bottom:1px solid #1e1e1e}
+  .product-card li:before{content:"✓ ";color:var(--orange);font-weight:700}
+  .buy-btn{width:100%;text-align:center;justify-content:center}
+  .tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+  .tier-card{background:#141414;border:1px solid #222;border-radius:12px;padding:28px;text-align:center;position:relative;display:flex;flex-direction:column}
+  .tier-card.popular{border-color:var(--orange)}
+  .tier-card h3{font-size:18px;text-transform:uppercase;margin:0 0 12px}
+  .tier-card .price .amount{font-size:36px}
+  .tier-card .desc{flex:1}
+  .fine-print{text-align:center;color:#555;font-size:13px;margin-top:32px}
+  .saas-band{background:linear-gradient(135deg,#1a0d00,#0a0a0a);border:1px solid #ff6b0033;border-radius:16px;margin:0 24px 80px;max-width:1152px;text-align:center}
+  .saas-inner{padding:70px 40px}
+  .saas-band h2{font-size:clamp(36px,5vw,60px);text-transform:uppercase;margin:16px 0}
+  .saas-band h2 em{color:var(--orange);font-style:normal}
+  .saas-copy{color:#aaa;font-size:17px;max-width:640px;margin:0 auto 32px;line-height:1.7}
+  .saas-price{margin-bottom:28px}
+  .saas-price .amount{font-size:72px;font-weight:800;color:var(--orange)}
+  .saas-price .note{color:#888;font-size:16px}
+  .saas-features{list-style:none;padding:0;margin:0 auto 36px;max-width:480px;text-align:left}
+  .saas-features li{color:#ccc;font-size:15px;padding:10px 0;border-bottom:1px solid #222}
+  .saas-features li:before{content:"✓ ";color:var(--orange);font-weight:700}
+  @media(max-width:768px){
+    .saas-band{margin:0 16px 60px}
+    .saas-inner{padding:50px 24px}
+  }
+</style>
