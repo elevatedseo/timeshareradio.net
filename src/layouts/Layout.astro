@@ -1,4 +1,6 @@
 ---
+import ElevatedSecurityBadge from '../components/ElevatedSecurityBadge.astro';
+
 import '../styles/global.css';
 const { title = 'Time Share Radio', description = 'A new stage for independent artists.' } = Astro.props;
 ---
@@ -44,6 +46,7 @@ const { title = 'Time Share Radio', description = 'A new stage for independent a
   .footer-boss span{color:rgba(255,255,255,.7);font-size:8px}
   .footer-boss b{font-size:15px}
 </style>
+<ElevatedSecurityBadge />
 </footer>
     <script>
       const button = document.querySelector('.menu-toggle');
