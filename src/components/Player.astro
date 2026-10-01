@@ -1,10 +1,30 @@
 ---
 const { compact = false } = Astro.props;
+const STREAM_URL = 'https://stream.zeno.fm/caw4422p64zuv';
 ---
-<div class:list={['player', { compact }]}>
-  <button class="play" aria-label="Play preview"><span>▶</span></button>
+<div class:list={['player', { compact }]} data-stream={STREAM_URL}>
+  <button class="play" aria-label="Play live stream"><span>▶</span></button>
   <div class="track-art"><span>TS</span></div>
-  <div class="track-copy"><small>NOW PLAYING</small><strong>YOUR NEXT FAVORITE ARTIST</strong><span>Time Share Radio · Artist Spotlight</span></div>
+  <div class="track-copy"><small>NOW PLAYING</small><strong>95.7 THE BOSS</strong><span>Live via Time Share Radio · Hip-Hop &amp; R&amp;B</span></div>
   <div class="wave" aria-hidden="true">{Array.from({ length: 24 }).map((_, i) => <i style={`--h:${20 + ((i * 17) % 70)}%`}></i>)}</div>
   <span class="time">LIVE</span>
+  <audio preload="none" src={STREAM_URL}></audio>
 </div>
+<script>
+  document.querySelectorAll('.player').forEach(player => {
+    const btn = player.querySelector('.play');
+    const audio = player.querySelector('audio');
+    const icon = btn?.querySelector('span');
+    btn?.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        if (icon) icon.textContent = '⏸';
+        btn.setAttribute('aria-label', 'Pause live stream');
+      } else {
+        audio.pause();
+        if (icon) icon.textContent = '▶';
+        btn.setAttribute('aria-label', 'Play live stream');
+      }
+    });
+  });
+</script>
