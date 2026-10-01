@@ -34,8 +34,17 @@ const { title = 'Time Share Radio', description = 'A new stage for independent a
           Artist Portal <b>↗</b>
         </a>
       </div>
+      <a class="footer-boss" href="https://957fmtheboss.com/" target="_blank" rel="noopener">
+          <span>Now streaming</span>
+          95.7 The Boss <b>↗</b>
+        </a>
       <p class="copyright">© {new Date().getFullYear()} Time Share Radio</p>
-    </footer>
+    <style>
+  .footer-boss{display:inline-flex;align-items:center;gap:18px;background:var(--orange);color:#fff;padding:15px 18px;text-decoration:none;text-transform:uppercase;font:600 11px DM Mono;margin-top:20px}
+  .footer-boss span{color:rgba(255,255,255,.7);font-size:8px}
+  .footer-boss b{font-size:15px}
+</style>
+</footer>
     <script>
       const button = document.querySelector('.menu-toggle');
       const nav = document.querySelector('#nav');
