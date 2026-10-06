@@ -58,6 +58,84 @@ const airtime = [
     desc: 'Your show, every week. Build a real audience with a recurring slot.',
     features: ['Weekly broadcast slot', 'Streaming replay archive', 'Full analytics suite', 'Promotional support'],
   },
+  {
+    name: 'Hourly Sponsorship',
+    price: '200',
+    priceNote: '$200 – $500+ non-commercial · $1,000 commercial',
+    desc: 'Sponsor an hour of programming. Your name on the air — 100% of the revenue goes to the artist.',
+    features: ['Full hour sponsored by you', '100% goes to the artist', 'Streaming replay', 'Listener analytics'],
+  },
+];
+
+const adshare = [
+  {
+    name: '30-Second Spots',
+    price: '30',
+    priceNote: '$30 – $50 non-commercial · $40 – $60+ commercial',
+    desc: 'The classic radio spot. Short, punchy, and perfect for driving calls and clicks.',
+    features: ['30 seconds of airtime', 'Non-commercial & commercial rates', 'Rotation across dayparts'],
+  },
+  {
+    name: '60-Second Spots',
+    price: '60',
+    priceNote: '$60 – $120+ commercial',
+    desc: 'A full minute to tell your story. More room to sell, more time to stick.',
+    features: ['60 seconds of airtime', 'Commercial radio rates', 'Premium placement options'],
+  },
+  {
+    name: 'Low Ad Load',
+    price: '240',
+    priceNote: '$240 – $480 per hour · 8 spots/hr',
+    desc: 'Light rotation for brands that want presence without overwhelming the music.',
+    features: ['8 spots per hour', '$240 – $480/hr', 'Mix of 30 & 60-sec spots'],
+    popular: true,
+  },
+  {
+    name: 'Medium Ad Load',
+    price: '360',
+    priceNote: '$360 – $720 per hour · 12 spots/hr',
+    desc: 'The sweet spot. Strong rotation that keeps your brand top of mind all hour.',
+    features: ['12 spots per hour', '$360 – $720/hr', 'Mix of 30 & 60-sec spots'],
+  },
+  {
+    name: 'High Ad Load',
+    price: '480',
+    priceNote: '$480 – $960 per hour · 16 spots/hr',
+    desc: 'Maximum impact. Own the hour with heavy rotation across every break.',
+    features: ['16 spots per hour', '$480 – $960/hr', 'Mix of 30 & 60-sec spots'],
+  },
+];
+
+const spins = [
+  { name: '$1,000 Campaign', price: '1,000', spins: '33 spins', desc: '33 guaranteed spins at $30 per spin. A first run to test the waters and watch the reports roll in.' },
+  { name: '$5,000 Campaign', price: '5,000', spins: '167 spins', desc: '167 guaranteed spins at $30 per spin. Serious rotation across both markets.' },
+  { name: '$10,000 Campaign', price: '10,000', spins: '334 spins', desc: '334 guaranteed spins at $30 per spin. Heavy presence on Omaha and Kansas City airwaves.' },
+  { name: '$20,000 Campaign', price: '20,000', spins: '667 spins', desc: '667 guaranteed spins at $30 per spin. Dominate both stations for a full campaign cycle.' },
+  { name: '$30,000 Campaign', price: '30,000', spins: '1,000 spins', desc: '1,000 guaranteed spins at $30 per spin. A thousand spins. A thousand chances to be heard.', popular: true },
+  { name: '$50,000 Campaign', price: '50,000', spins: '1,667 spins', desc: '1,667 guaranteed spins at $30 per spin. The flagship campaign — maximum market saturation.' },
+];
+
+const marketplaceItems = [
+  {
+    name: 'Song Sales',
+    desc: 'Sell your singles direct to fans. No middleman, no waiting — your music, your price.',
+    features: ['Set your own price', 'Instant fan delivery', 'You keep 70%'],
+  },
+  {
+    name: 'Album Sales',
+    desc: 'Full projects, EPs, and deluxe editions sold straight from your artist page.',
+    features: ['Full album & EP sales', 'Deluxe bundles', 'You keep 70%'],
+  },
+  {
+    name: 'Beat Sales',
+    desc: 'Producers — lease or sell your beats to artists across the network.',
+    features: ['Leases & exclusives', 'Built-in licensing', 'You keep 70%'],
+  },
+  {
+    name: 'Merch Sales',
+    desc: 'Shirts, hoodies, hats, posters — turn listeners into walking billboards.',
+    features: ['Apparel & accessories', 'Print-on-demand options', 'You keep 70%'],
+  },
 ];
 
 const distribution = {
@@ -84,7 +162,7 @@ const memberships = [
   { name: 'Elite', price: 999, desc: 'Airplay + interviews + 50% ad-share + featured artist + global distribution.', cta: 'Go Elite' },
 ];
 ---
-<Layout title="Promote Your Music | Time Share Radio" description="Get your music reviewed, interviewed, and on the air. Song reviews, priority placement, artist interviews, airplay campaigns, and show rentals.">
+<Layout title="Promote Your Music | Time Share Radio" description="Get your music reviewed, interviewed, and on the air. Song reviews, airplay campaigns, ad-share spots, spin packages, music & merch marketplace, distribution, memberships, and station rentals.">
   <section class="page-hero">
     <p class="eyebrow">For Artists</p>
     <h1>GET HEARD.<br /><em>GET PAID.</em></h1>
@@ -147,10 +225,71 @@ const memberships = [
     <p class="fine-print">Commercial rates available. Contact us for custom packages and sponsorship opportunities.</p>
   </section>
 
-  <!-- GLOBAL DISTRIBUTION -->
+  <!-- AD-SHARE -->
+  <section class="section">
+    <div class="section-heading">
+      <span class="section-num">03 / AD-SHARE</span>
+      <h2>ADVERTISE <em>WITH US</em></h2>
+      <p>Radio spots for real businesses. Pick your length, pick your load, reach real listeners.</p>
+    </div>
+    <div class="product-grid">
+      {adshare.map(a => (
+        <article class:list={['product-card', { popular: a.popular }]}>
+          {a.popular && <span class="badge">Most Popular</span>}
+          <h3>{a.name}</h3>
+          <div class="price">
+            <span class="amount">${a.price}</span>
+            <span class="note">{a.priceNote}</span>
+          </div>
+          <p class="desc">{a.desc}</p>
+          <ul>
+            {a.features.map(f => <li>{f}</li>)}
+          </ul>
+          <a class="button primary buy-btn" href="/contact/">
+            Advertise With Us <b>→</b>
+          </a>
+        </article>
+      ))}
+    </div>
+    <p class="fine-print">Revenue split: 25% artist · 50% station · 25% platform. Every ad supports independent artists and radio.</p>
+  </section>
+
+  <!-- AIRPLAY CAMPAIGNS -->
   <section class="section alt">
     <div class="section-heading">
-      <span class="section-num">03 / DISTRIBUTION</span>
+      <span class="section-num">04 / AIRPLAY CAMPAIGNS</span>
+      <h2>SPIN <em>PACKAGES</em></h2>
+      <p>$30 per spin. Guaranteed spins, spin reports, and analytics — across two real markets.</p>
+    </div>
+    <div class="product-grid">
+      {spins.map(s => (
+        <article class:list={['product-card', { popular: s.popular }]}>
+          {s.popular && <span class="badge">Best Value</span>}
+          <h3>{s.name}</h3>
+          <div class="price">
+            <span class="amount">${s.price}</span>
+            <span class="note">{s.spins} — $30 per spin</span>
+          </div>
+          <p class="desc">{s.desc}</p>
+          <ul>
+            <li>Guaranteed {s.spins.toLowerCase()}</li>
+            <li>KOWN 95.7 The Boss — Omaha</li>
+            <li>KPPZ 98.5 Urban Oldies — Kansas City</li>
+            <li>Spin reports + analytics</li>
+          </ul>
+          <a class="button primary buy-btn" href="/contact/">
+            Launch My Campaign <b>→</b>
+          </a>
+        </article>
+      ))}
+    </div>
+    <p class="fine-print">Spins air on Omaha KOWN 95.7 The Boss and Kansas City KPPZ 98.5 Urban Oldies. Every campaign includes detailed spin reports and listener analytics.</p>
+  </section>
+
+  <!-- GLOBAL DISTRIBUTION -->
+  <section class="section">
+    <div class="section-heading">
+      <span class="section-num">05 / DISTRIBUTION</span>
       <h2>GO <em>GLOBAL.</em></h2>
       <p>Your music on every platform on earth. We handle the upload — you keep every cent.</p>
     </div>
@@ -181,10 +320,34 @@ const memberships = [
     <p class="fine-print">Premium and Elite members get distribution included. Everyone else can add it anytime.</p>
   </section>
 
+  <!-- MARKETPLACE -->
+  <section class="section alt">
+    <div class="section-heading">
+      <span class="section-num">06 / MARKETPLACE</span>
+      <h2>MUSIC &amp; <em>MERCH</em></h2>
+      <p>Sell direct to your fans. Songs, albums, beats, and merch — you keep 70%.</p>
+    </div>
+    <div class="product-grid">
+      {marketplaceItems.map(m => (
+        <article class="product-card">
+          <h3>{m.name}</h3>
+          <p class="desc">{m.desc}</p>
+          <ul>
+            {m.features.map(f => <li>{f}</li>)}
+          </ul>
+          <a class="button primary buy-btn" href="/contact/">
+            Start Selling <b>→</b>
+          </a>
+        </article>
+      ))}
+    </div>
+    <p class="fine-print">Revenue split on every sale: 70% artist/label · 15% station · 15% platform.</p>
+  </section>
+
   <!-- MEMBERSHIPS -->
   <section class="section">
     <div class="section-heading">
-      <span class="section-num">04 / MEMBERSHIP</span>
+      <span class="section-num">07 / MEMBERSHIP</span>
       <h2>ARTIST <em>MEMBERSHIPS</em></h2>
       <p>Monthly plans that grow with your career. 75% goes to the station, 25% keeps the platform running.</p>
     </div>
@@ -208,7 +371,7 @@ const memberships = [
   <!-- STATION SAAS -->
   <section class="section saas-band">
     <div class="saas-inner">
-      <span class="section-num">05 / FOR STATIONS</span>
+      <span class="section-num">08 / FOR STATIONS</span>
       <h2>RUN YOUR STATION<br />ON <em>TIME SHARE RADIO</em></h2>
       <p class="saas-copy">The full platform — artist directory, submissions, airplay management, analytics, and monetization — for your station. Not just a plugin. A complete system.</p>
       <div class="saas-price">
