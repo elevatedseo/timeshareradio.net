@@ -1,5 +1,6 @@
 ---
 import ElevatedSecurityBadge from '../components/ElevatedSecurityBadge.astro';
+import Analytics from '../components/Analytics.astro';
 
 import '../styles/global.css';
 const { title = 'Time Share Radio', description = 'A new stage for independent artists.' } = Astro.props;
@@ -25,6 +26,7 @@ const { title = 'Time Share Radio', description = 'A new stage for independent a
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://www.timeshareradio.net/og-image.jpg" />
+    <Analytics />
   </head>
   <body>
     <header class="site-header">
