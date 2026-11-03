@@ -14,6 +14,16 @@ import Player from '../components/Player.astro';
     <div class="ticker"><span>ARTIST SPOTLIGHT</span><i>✦</i><span>CURATED DISCOVERY</span><i>✦</i><span>REAL LISTENERS</span><i>✦</i><span>YOUR TURN ON AIR</span></div>
   </section>
 
+  <section class="video-feature">
+    <div class="section-heading"><span class="section-num">Watch / The Film</span><h2>OPEN THE DOOR<br /><em>TO RADIO.</em></h2></div>
+    <div class="video-frame">
+      <video controls preload="metadata" playsinline poster="/media/timeshare-radio-promo-poster.jpg">
+        <source src="/media/timeshare-radio-promo.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <p class="video-copy">Radio should be more than a gatekeeper. It should be an open door. Time Share Radio connects independent artists with real airtime, and stations with new revenue.</p>
+  </section>
+
   <section class="statement" id="about">
     <div><span class="section-num">01 / THE PLUGIN</span><h2>ONE PLUGIN.<br />THE FULL STAGE.</h2></div>
     <div class="statement-copy"><p>Time Share Radio adds structured artist bios and a connected music shop to WordPress, giving every artist a profile and every release a path to purchase.</p><p>Install once. Create artists, publish music, and let the plugin build the experience.</p></div>
@@ -33,3 +43,12 @@ import Player from '../components/Player.astro';
     <a class="button light" href="/artist/">Start your spotlight <b>↗</b></a>
   </section>
 </Layout>
+<style>
+  .video-feature{padding:clamp(70px,9vw,120px) clamp(22px,7vw,110px);border-bottom:1px solid var(--line)}
+  .video-feature .section-num{color:var(--orange)}
+  .video-feature h2{font-size:clamp(42px,6vw,88px);margin:18px 0 30px}
+  .video-feature h2 em{color:var(--orange)}
+  .video-frame{max-width:1060px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#000}
+  .video-frame video{display:block;width:100%;height:auto}
+  .video-copy{max-width:640px;font-size:17px;line-height:1.65;margin:26px 0 0}
+</style>
