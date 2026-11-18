@@ -1,0 +1,40 @@
+---
+import { GA_MEASUREMENT_ID } from '../config/analytics';
+
+const gaEnabled =
+  GA_MEASUREMENT_ID.startsWith('G-') && GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX';
+---
+
+{gaEnabled && (
+  <>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+    </script>
+    <script is:inline>
+      // GA4 click-event layer — the standard on every Elevated site (ga4-harness.md, "Click-event layer").
+      // One delegated listener: click-to-call, email, and directions clicks become GA4 events.
+      document.addEventListener('click', function (event) {
+        var link = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+        if (!link || typeof gtag !== 'function') return;
+        var href = link.getAttribute('href') || '';
+        if (href.indexOf('tel:') === 0) {
+          gtag('event', 'phone_click', { phone_number: href.slice(4) });
+        } else if (href.indexOf('mailto:') === 0) {
+          gtag('event', 'email_click', { email_address: href.slice(7).split('?')[0] });
+        } else if (
+          href.indexOf('google.com/maps') !== -1 ||
+          href.indexOf('maps.google.') !== -1 ||
+          href.indexOf('maps.app.goo.gl') !== -1 ||
+          href.indexOf('/maps/dir') !== -1 ||
+          href.indexOf('dir/?') !== -1
+        ) {
+          gtag('event', 'directions_click', { link_url: href });
+        }
+      });
+    </script>
+  </>
+)}
